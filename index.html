@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/1671299516.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Library</h1>
+    </header>
+    <main class="container">
+        <div class="btn-container">
+            <div class="button"><span>Add new</span></div>
+        </div>
+        <section id="bookContainer">
+            <div class="book">
+                <p class="title">rinshad</p>
+                <p class="author">rinshad</p>
+                <p class="number">209</p>
+                <button id="read">read</button>
+                <button id="remove">remove</button>
+            </div>
+            <div class="book">
+                <p class="title">rinshad</p>
+                <p class="author">rinshad</p>
+                <p class="number">209</p>
+                <button id="read">read</button>
+                <button id="remove">remove</button>
+            </div>
+            <div class="book">
+                <p class="title">rinshad</p>
+                <p class="author">rinshad</p>
+                <p class="number">209</p>
+                <button id="read">read</button>
+                <button id="remove">remove</button>
+            </div>
+            <div class="book">
+                <p class="title">rinshad</p>
+                <p class="author">rinshad</p>
+                <p class="number">209</p>
+                <button id="read">read</button>
+                <button id="remove">remove</button>
+            </div>
+            <div class="book">
+                <p class="title">rinshad</p>
+                <p class="author">rinshad</p>
+                <p class="number">209</p>
+                <button id="read">read</button>
+                <button id="remove">remove</button>
+            </div>
+            <div class="book">
+                <p class="title">rinshad</p>
+                <p class="author">rinshad</p>
+                <p class="number">209</p>
+                <button id="read">read</button>
+                <button id="remove">remove</button>
+            </div>
+            <div class="book">
+                <p class="title">rinshad</p>
+                <p class="author">rinshad</p>
+                <p class="number">209</p>
+                <button id="read">read</button>
+                <button id="remove">remove</button>
+            </div>
+        </section>
+
+    </main>
+    <footer class="footer">
+        <p>
+            Copyright ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            Rinshad
+        </p>
+        <a href="https://github.com/Rinshad-parancheri" target="_blank">
+            <i class="fa-brands fa-github" aria-hidden="true"></i></a>
+
+    </footer>
+    <div id="overlay">
+    </div>
+    <form id="bookForm">
+        <h3>New Book</h3>
+        <input type="text" id="author" name="author" placeholder="Author" required><br>
+        <input type="text" id="title" name="title" required placeholder="Book Name"><br>
+        <input type="number" id="pages" name="pages" required placeholder="pages"><br>
+        <div class="read-or-not">
+            <label for="read">Have read it ?</label>
+            <input type="checkbox" id="read" name="read"><br><br>
+        </div>
+
+        <input type="submit" value="Add Book">
+    </form>
+    <script src="main.js"></script>
+</body>
+
+</html>
