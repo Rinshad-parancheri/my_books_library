@@ -7,18 +7,34 @@
     margin: 0;
     padding: 0;
 }
+:root{
+    --primary-color: #3498db;
+    --secondary-color: #c790a2 ;
+    --text-color: #333;
+    --header-background:azure;
+    --main-font: 'Lato';
+    --book-background:lightblue;
+    --custom-btn-background:#d6a4b5;
+    --custom-btn-shadow:-6px -6px 10px rgba(185, 171, 171, 0.8),
+    6px 6px 10px rgba(0, 0, 0, 0.2);
+    --custom-btn-active:inset -4px -4px 8px rgba(199, 165, 165, 0.5);    
+}
+
 
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: var(--main-font), sans-serif;
     word-wrap: break-word;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 41px;
 }
 
 .header {
     text-align: center;
     max-height: 200px;
-    background-color: azure;
+    background-color: var(--header-background);
     padding: 20px;
-    letter-spacing: 0.5;
+    letter-spacing: 3px;
 }
 
 .container {
@@ -44,13 +60,13 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    border: 5px solid black;
+    border: 5px solid var(--text-color);
     border-radius: 25px;
     height: 300px;
     width: 300px;
     padding: 15px;
     margin: 20px;
-    background-color: lightblue;
+    background-color: var(--book-background);
 }
 
 .book {
@@ -65,7 +81,7 @@ body {
 .book button {
     border: none;
     color: black;
-    background-color: #c790a2;
+    background-color:  var(--secondary-color);
     cursor: pointer;
     outline: none;
     width: 150px;
@@ -82,11 +98,19 @@ body {
 .book button:active {
     transform: scale(0.98);
 }
+.book button.notRead{
+      background-color: red;
+      color: white;
+}
 
+.book button.read{
+    background-color: green;
+    color: white;
+}
 .button {
     width: max-content;
     height: max-content;
-    background: #d6a4b5;
+    background: var(--custom-btn-background);
     position: relative;
     text-align: center;
     border-radius: 10px;
@@ -104,25 +128,27 @@ body {
 }
 
 .button:hover {
-    opacity: 0.3;
-    box-shadow: -6px -6px 10px rgba(185, 171, 171, 0.8),
-        6px 6px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0.6;
+    box-shadow: var(--custom-btn-shadow)
 }
 
 .button:active {
     opacity: 1;
-    box-shadow: inset -4px -4px 8px rgba(199, 165, 165, 0.5),
+    box-shadow: var(--custom-btn-active);
 }
 
 .footer {
     position: absolute;
     bottom: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
+    padding: 0 0 5px;
     width: 100%;
-    font-size: 18px;
+    font-size: 20px;
+    letter-spacing: 1px;
 }
 
 .fa-github {
@@ -133,7 +159,7 @@ body {
 }
 
 .fa-github:hover {
-    transform: rotate(360deg) scale(1.2) translateZ(0);
+    transform: rotate(360deg) scale(1.1);
 }
 
 #overlay {
@@ -141,17 +167,13 @@ body {
     width: 100%;
     height: 100%;
     display: none;
-    visibility: hidden;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
     cursor: pointer;
 }
 
-form {
+.formContainer {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -160,20 +182,19 @@ form {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     width: 300px;
-    background-color: darkcyan;
+    background-color: var(--primary-color);
     padding: 20px;
     z-index: 3;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: 0.2s ease-in;
+    transform: translate(-50%, -50%)scale(0);
+    transition:transform 0.3s ease-in-out;
 }
 
-form.active {
-    transform: translate(-50%, -50%);
-    opacity: 1;
+.formContainer.active {
+    transform: translate(-50%, -50%)scale(1);
+     
 }
 
 input {
@@ -204,7 +225,6 @@ input[type='submit'] {
 }
 
 input#read {
-
     width: 20px;
     height: 24px;
 }
