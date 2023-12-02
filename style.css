@@ -8,13 +8,11 @@
     padding: 0;
 }
 :root{
-    --primary-color: #3498db;
-    --secondary-color: #c790a2 ;
+    --primary-color: #61abdb;
+    --secondary-color: #d8bcc5 ;
     --text-color: #333;
     --header-background:azure;
     --main-font: 'Lato';
-    --book-background:lightblue;
-    --custom-btn-background:#d6a4b5;
     --custom-btn-shadow:-6px -6px 10px rgba(185, 171, 171, 0.8),
     6px 6px 10px rgba(0, 0, 0, 0.2);
     --custom-btn-active:inset -4px -4px 8px rgba(199, 165, 165, 0.5);    
@@ -32,7 +30,7 @@ body {
 .header {
     text-align: center;
     max-height: 200px;
-    background-color: var(--header-background);
+    background-color: var(--primary-color);
     padding: 20px;
     letter-spacing: 3px;
 }
@@ -60,13 +58,13 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    border: 5px solid var(--text-color);
     border-radius: 25px;
     height: 300px;
     width: 300px;
     padding: 15px;
     margin: 20px;
-    background-color: var(--book-background);
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .book {
@@ -110,7 +108,7 @@ body {
 .button {
     width: max-content;
     height: max-content;
-    background: var(--custom-btn-background);
+    background: var(--secondary-color);
     position: relative;
     text-align: center;
     border-radius: 10px;
