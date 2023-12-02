@@ -1,5 +1,4 @@
 id = 0;
-
 class Book {
     constructor(bookName, author, pages, isRead) {
         this.name = bookName;
@@ -15,12 +14,12 @@ class Book {
 class Library {
     #books = []
 
-
     addBook(book) {
         this.#books.push(book)
     }
 
     removeBook(title) {
+        console.log(title);
         const index = this.#books.findIndex(book => book.name === title);
         if (index !== -1) {
             this.#books.splice(index, 1);
@@ -34,9 +33,10 @@ class Library {
     }
 
     toggleReadStatus(book) {
-        (book.isRead) ? false : true;
-    }
+        book.isRead = (book.isRead) ? false : true;
+        console.log(book.isRead);
 
+    }
 
     showBookOnDom(book) {
         domManagment.appendBook(book);
@@ -46,7 +46,7 @@ class Library {
 
 
 class SetUpEventListener {
-    SetUpFormAndOverLay() {
+    setUpFormAndOverLay() {
         const bookForm = document.getElementById('form');
         const addNewBookBtn = document.getElementById('newBookBtn');
         document.addEventListener('DOMContentLoaded', () => {
@@ -55,13 +55,31 @@ class SetUpEventListener {
         });
     }
 
+    readingStatus(newBook) {
+        const readingStatusBtn = newBook.querySelector('.isRead');
+        readingStatusBtn.addEventListener('click', (e) => {
+            const title = e.target.closest('.book').querySelector('.title').innerText;
+            const book = library.findBook(title);
+            library.toggleReadStatus(book);
+            domManagment.toggleTheReadStatus(e.target);
+        })
+    }
+
+    removeBtn(newBook) {
+        const removeButtons = newBook.querySelector('.remove');
+        removeButtons.addEventListener('click', (e) => {
+            const title = e.target.closest('.book').querySelector('.title').innerText;
+            library.removeBook(title);
+            domManagment.removeBookElement(e.target)
+        })
+    }
+
 }
 
 
 class DomManagment {
-    // addNewBookBtn = document.getElementById('newBookBtn');
     handleFormSubmit(e) {
-       e.preventDefault();
+        e.preventDefault();
         const bookName = document.getElementById('title').value;
         const author = document.getElementById('author').value;
         const pages = parseInt(document.getElementById('pages').value);
@@ -75,6 +93,8 @@ class DomManagment {
         bookContainer.appendChild(newBookDiv);
         this.toggleFormAndOverlay()
         this.resetForm();
+        setUpEventListener.readingStatus(newBookDiv);
+        setUpEventListener.removeBtn(newBookDiv);
     }
 
     createBookElement(book) {
@@ -90,19 +110,12 @@ class DomManagment {
         return newBook;
     }
 
-
-
-    toggleReadStatus(newBook) {
-        newBook.addEventListener('click', function (event) {
-            const targetButton = event.target;
-            const title = btn.closest('.book').querySelector('.title').innerText;
-            library.toggleReadStatus(title);
-            if (targetButton.classList.contains('isRead')) {
-                targetButton.classList.toggle('read');
-                targetButton.classList.toggle('notRead');
-                targetButton.innerHTML = targetButton.classList.contains('read') ? 'Completed' : 'Reading';
-            }
-        });
+    toggleTheReadStatus(targetButton) {
+        if (targetButton.classList.contains('isRead')) {
+            targetButton.classList.toggle('read');
+            targetButton.classList.toggle('notRead');
+            targetButton.innerHTML = targetButton.classList.contains('read') ? 'Completed' : 'Reading';
+        }
     }
 
     resetForm() {
@@ -110,29 +123,16 @@ class DomManagment {
         bookForm.reset();
     }
 
-    toggleReadStatusInLibrary(btn) {
 
-        const book = findBook(title);
-        (book.isRead) ? book.isRead = false : book.isRead = true;
-
-
-    }
-    removeBookElement(newBook) {
-        const removeButtons = newBook.querySelectorAll('.remove');
-        removeButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                button.closest('.book').remove();
-                const title = this.parentElement.querySelector('.title').innerText;
-                removeBookFromLibrary(title);
-
-            });
-        });
+    removeBookElement(button) {
+        button.closest('.book').remove();
+        const title = this.parentElement.querySelector('.title').innerText;
     }
 
     toggleFormAndOverlay(display) {
         const formContainer = document.querySelector('.formContainer');
         const overlay = document.getElementById('overlay');
-    
+
         overlay.style.display = display ? 'block' : 'none';
         formContainer.classList.toggle('active', display);
     }
@@ -142,4 +142,4 @@ const domManagment = new DomManagment();
 const library = new Library();
 const setUpEventListener = new SetUpEventListener();
 
-setUpEventListener.SetUpFormAndOverLay()
+setUpEventListener.setUpFormAndOverLay()
